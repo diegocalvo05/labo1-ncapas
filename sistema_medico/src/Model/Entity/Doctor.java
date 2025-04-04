@@ -9,8 +9,8 @@ public class Doctor extends Person {
     private String codigo;
 
     // Constructor
-    public Doctor(String nombre,String apellido, String dui, LocalDate birthDate, LocalDate fechaReclutamiento, String especialidad) {
-        super(nombre, apellido, dui, birthDate);
+    public Doctor(String nombre, String apellido, LocalDate birthDate, String dui, LocalDate fechaReclutamiento, String especialidad) {
+        super(nombre, apellido, birthDate, dui);
         this.fechaReclutamiento = fechaReclutamiento;
         this.especialidad = especialidad;
         this.codigo = generateCodigo();

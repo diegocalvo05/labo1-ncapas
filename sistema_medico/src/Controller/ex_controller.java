@@ -1,4 +1,4 @@
-package Model.Controller;
+package Controller;
 
 public class ex_controller {
 }
