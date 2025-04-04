@@ -7,6 +7,7 @@ public class Doctor extends Person {
     private LocalDate fechaReclutamiento;
     private String especialidad;
     private String codigo;
+
     // Constructor
     public Doctor(String nombre,String apellido, String dui, LocalDate birthDate, LocalDate fechaReclutamiento, String especialidad) {
         super(nombre, apellido, dui, birthDate);
