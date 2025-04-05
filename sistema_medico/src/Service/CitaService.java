@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class CitaService {
     private List<Cita> citas;
-    private DoctorService doctorService;
+    private DoctorService doctorService;//Se cambiara por el nombre que le pongas al servicio
     private PatientService patientService;
     private Scanner scanner;
 
@@ -25,11 +25,11 @@ public class CitaService {
 
     public void agendarCita() {
         System.out.println("📚 Especialidades disponibles:");
-        doctorService.mostrarEspecialidades();
+        doctorService.mostrarEspecialidades();//Se cambiara dependiendo lo que hagas
         System.out.print("Seleccione la especialidad: ");
         String especialidad = scanner.nextLine();
 
-        Doctor doctor = doctorService.seleccionarDoctorPorEspecialidad(especialidad);
+        Doctor doctor = doctorService.seleccionarDoctorPorEspecialidad(especialidad);// Se cambiara dependiendo lo que hagas
         if (doctor == null) {
             System.out.println("No hay doctores disponibles en esta especialidad.");
             return;
