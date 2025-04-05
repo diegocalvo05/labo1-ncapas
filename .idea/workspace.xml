@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9df65e11-df6a-419c-99e3-faac37b9af82" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/sistema_medico/src/Controller/PatientController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sistema_medico/src/Service/PatientService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/labo1-ncapas.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/labo1-ncapas.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
@@ -17,6 +15,7 @@
       <change beforePath="$PROJECT_DIR$/sistema_medico/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/sistema_medico.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/sistema_medico.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Controller/CitaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Controller/CitaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema_medico/src/Controller/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Controller/PatientController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Controller/ex_controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Controller/ex_controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Cita.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Cita.java" afterDir="false" />
@@ -24,6 +23,7 @@
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Patient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Service/CitaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Service/CitaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema_medico/src/Service/PatientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Service/PatientService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Service/ex_service.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Service/ex_service.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
