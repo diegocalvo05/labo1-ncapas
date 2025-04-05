@@ -1,7 +1,10 @@
-package Entity;
+package Model.Entity;
 
-import Java.time.LocalDate;
-import Java.time.LocalTime;
+import Model.Entity.Doctor;
+import Model.Entity.Patient;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Cita {
     private Doctor doctor;

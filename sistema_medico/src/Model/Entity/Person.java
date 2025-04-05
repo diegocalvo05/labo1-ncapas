@@ -8,13 +8,14 @@ public class Person {
     private LocalDate birthDate;
     private String dui;
 
-
     public Person(String nombre, String apellido, LocalDate birthDate, String dui) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.birthDate = birthDate;
-        this.dui = (LocalDate.now().getYear() - birthDate.getYear() < 18 || dui == null || dui.isEmpty()) ? "00000000-0" : dui;
+        this.dui = dui;
     }
+
+    // Getters y setters
 
     public String getNombre() {
         return nombre;
