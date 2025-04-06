@@ -23,7 +23,7 @@ public class CitaService {
         this.scanner = new Scanner(System.in);
     }
 
-    public void agendarCita() {
+    public Cita makeCita() {
         System.out.println("📚 Especialidades disponibles:");
         doctorService.showSpecialities();//Se cambiara dependiendo lo que hagas
         System.out.print("Seleccione la especialidad: ");
@@ -32,7 +32,7 @@ public class CitaService {
         Doctor doctor = doctorService.seleccionarDoctorPorEspecialidad(especialidad);// Se cambiara dependiendo lo que hagas
         if (doctor == null) {
             System.out.println("No hay doctores disponibles en esta especialidad.");
-            return;
+            return null;
         }
 
         System.out.print("Ingrese el DUI del paciente: ");
@@ -48,32 +48,37 @@ public class CitaService {
         // Validación de hora permitida
         if (!esHorarioValido(hora)) {
             System.out.println("La hora ingresada está fuera del horario permitido (08:00 AM - 04:00 PM).");
-            return;
+            return null;
         }
 
         // Validar que la cita no sea en el pasado y sea en el futuro
         if (fecha.isBefore(LocalDate.now()) || (fecha.equals(LocalDate.now()) && hora.isBefore(LocalTime.now()))) {
             System.out.println("No se pueden agendar citas en el pasado.");
-            return;
+            return null;
         }
 
         // Validar disponibilidad del doctor
         if (!esDoctorDisponible(doctor, fecha, hora)) {
             System.out.println("El doctor ya tiene una cita en ese horario.");
-            return;
+            return null;
         }
 
         // Validar disponibilidad del paciente
         if (!esPacienteDisponible(patient, fecha, hora)) {
             System.out.println("El paciente ya tiene una cita en ese horario.");
-            return;
+            return null;
         }
 
         // Crear y agregar la cita
-        Cita nuevaCita = new Cita(doctor, patient, especialidad, fecha, hora);
-        citas.add(nuevaCita);
+
+        return new Cita(doctor, patient, especialidad, fecha, hora);
+    }
+
+    public void agendarCita() {
+        Cita newCita = makeCita();
+        citas.add(newCita);
         System.out.println("✅ Cita agendada con éxito:");
-        System.out.println(nuevaCita);
+        System.out.println(newCita);
     }
 
     private boolean esHorarioValido(LocalTime hora) {
@@ -105,6 +110,51 @@ public class CitaService {
             return;
         }
         System.out.println("📅 Citas registradas:");
-        citas.forEach(System.out::println);
+        citas.forEach(c -> System.out.println(c.toString()));
+    }
+
+    public void showCitaByDoctor(Doctor doctor) {
+        List<Cita> filteredCitas = citas.stream().filter(c -> c.getDoctor().equals(doctor)).toList();
+
+        if (filteredCitas.isEmpty()) {
+            System.out.println("📭 No hay citas registradas con " + doctor.getNombre());
+            return;
+        }
+
+        System.out.println("📅 Citas registradas:");
+        filteredCitas.forEach(c -> System.out.println(c.toString() + "\n\n\n"));
+    }
+
+    public void showCitaByDate(LocalDate date) {
+        List<Cita> filteredCitas = citas.stream().filter(c -> c.getFecha().equals(date)).toList();
+
+        if (filteredCitas.isEmpty()) {
+            System.out.println("📭 No hay citas registradas para " + date.toString());
+            return;
+        }
+
+        System.out.println("📅 Citas registradas para: " + date);
+        filteredCitas.forEach(c -> System.out.println(c.toString() + "\n\n\n"));
+    }
+
+    public void updateCita(Cita cita, Cita newCita) {
+        for(int i = 0; i < citas.size(); i++) {
+            if(citas.get(i).equals(cita)) {
+                citas.set(i, newCita);
+            }
+        }
+    }
+
+    public void updateCitaMenu() {
+        System.out.println("Seleccione la cita a editar: ");
+
+        for(int i = 0; i < citas.size(); i++) {
+            System.out.println(i + ". " + citas.get(i).toString());
+        }
+
+        Cita selectedCita = citas.get(Integer.parseInt(scanner.nextLine()));
+        Cita updatedCita = makeCita();
+
+        updateCita(selectedCita, updatedCita);
     }
 }
