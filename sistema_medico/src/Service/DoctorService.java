@@ -21,7 +21,7 @@ public class DoctorService {
     }
 
     public static DoctorService getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new DoctorService();
         }
         return instance;
@@ -40,6 +40,18 @@ public class DoctorService {
         Doctor newDoctor = new Doctor(nombre, apellido, birthDate, dui, fechaReclutamiento, especialidad);
         doctors.add(newDoctor);
         return newDoctor;
+    }
+
+    private LocalDate readDate(String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            String input = scanner.nextLine();
+            try {
+                return LocalDate.parse(input);
+            } catch (Exception e) {
+                System.out.println("⚠️ Formato inválido. Use el formato YYYY-MM-DD.");
+            }
+        }
     }
 
     public void addDoctorMenu() {
@@ -62,31 +74,32 @@ public class DoctorService {
         System.out.print("Apellido: ");
         String apellido = scanner.nextLine();
 
-        System.out.print("Fecha de nacimiento (YYYY-MM-DD): ");
-        LocalDate birthDate = LocalDate.parse(scanner.nextLine());
-
-        System.out.print("Fecha de reclutamiento (YYYY-MM-DD): ");
-        LocalDate fechaReclutamiento = LocalDate.parse(scanner.nextLine());
+        LocalDate birthDate = readDate("Fecha de nacimiento (YYYY-MM-DD): ");
+        LocalDate fechaReclutamiento = readDate("Fecha de reclutamiento (YYYY-MM-DD): ");
 
         System.out.println("Elija su especialidad (Digite el número): ");
         for (int i = 0; i < specialities.size(); i++) {
-            System.out.println(i + ". " + specialities.get(i));
+            System.out.println((i + 1) + ". " + specialities.get(i));
         }
 
         int opcionEspecialidad = -1;
-        while (opcionEspecialidad < 0 || opcionEspecialidad >= specialities.size()) {
+        while (opcionEspecialidad < 1 || opcionEspecialidad > specialities.size()) {
             try {
                 System.out.print("Especialidad: ");
                 opcionEspecialidad = Integer.parseInt(scanner.nextLine());
+                if (opcionEspecialidad < 1 || opcionEspecialidad > specialities.size()) {
+                    System.out.println("⚠️ Opción fuera de rango.");
+                }
             } catch (NumberFormatException e) {
                 System.out.println("⚠️ Por favor, ingrese un número válido.");
             }
         }
 
-        String especialidad = specialities.get(opcionEspecialidad);
+        String especialidad = specialities.get(opcionEspecialidad - 1);
         Doctor newDoctor = addDoctor(nombre, apellido, birthDate, dui, fechaReclutamiento, especialidad);
 
         System.out.println("✅ Doctor registrado exitosamente:");
+        System.out.println("Código del Doctor: " + newDoctor.getCodigo());
         System.out.println(newDoctor.toString());
     }
 
@@ -105,7 +118,7 @@ public class DoctorService {
 
     public Doctor seleccionarDoctorPorEspecialidad(String especialidad) {
         List<Doctor> selectedDoctors = doctors.stream()
-                .filter(doctor -> doctor.getEspecialidad().equals(especialidad))
+                .filter(doctor -> doctor.getEspecialidad().equalsIgnoreCase(especialidad))
                 .toList();
 
         if (selectedDoctors.isEmpty()) {
@@ -115,7 +128,8 @@ public class DoctorService {
 
         System.out.println("👨‍⚕️ Doctores disponibles con especialidad '" + especialidad + "':");
         for (int i = 0; i < selectedDoctors.size(); i++) {
-            System.out.println(i + ". " + selectedDoctors.get(i).getNombre());
+            Doctor d = selectedDoctors.get(i);
+            System.out.println(i + ". " + d.getNombre() + " " + d.getApellido() + " - " + d.getCodigo());
         }
 
         int index = -1;
@@ -137,4 +151,16 @@ public class DoctorService {
         return selectedDoctors.get(index);
     }
 
+    public List<Doctor> getDoctors() {
+        return doctors;
+    }
+
+    public Doctor buscarDoctorPorNombre(String nombre) {
+        for (Doctor d : doctors) {
+            if (d.getNombre().equalsIgnoreCase(nombre)) {
+                return d;
+            }
+        }
+        return null;
+    }
 }

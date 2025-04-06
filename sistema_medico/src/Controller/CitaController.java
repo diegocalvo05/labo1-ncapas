@@ -15,8 +15,8 @@ public class CitaController {
     private Scanner scanner;
 
     public CitaController() {
-        this.doctorService = doctorService.getInstance();
-        this.patientService = patientService.getInstance();
+        this.doctorService = DoctorService.getInstance();
+        this.patientService = PatientService.getInstance();
         this.citaService = new CitaService(doctorService, patientService);
         this.scanner = new Scanner(System.in);
     }
@@ -29,15 +29,33 @@ public class CitaController {
         citaService.listarCitas();
     }
 
-    public void showCitaByDoctorController(Doctor doctor) {
+    public void listarCitasPorDoctorController() {
+        System.out.println("🔎 Buscar citas por doctor:");
+        doctorService.getDoctors().forEach(d -> System.out.println("- " + d.getNombre()));
+
+        System.out.print("Ingrese el nombre del doctor: ");
+        String nombre = scanner.nextLine();
+
+        Doctor doctor = doctorService.buscarDoctorPorNombre(nombre);
+        if (doctor == null) {
+            System.out.println("❌ Doctor no encontrado.");
+            return;
+        }
+
         citaService.showCitaByDoctor(doctor);
     }
 
-    public void showCitaByDateController(LocalDate date) {
-        citaService.showCitaByDate(date);
+    public void listarCitasPorFechaController() {
+        System.out.print("📅 Ingrese la fecha (YYYY-MM-DD): ");
+        try {
+            LocalDate fecha = LocalDate.parse(scanner.nextLine());
+            citaService.showCitaByDate(fecha);
+        } catch (Exception e) {
+            System.out.println("❌ Formato de fecha inválido.");
+        }
     }
 
-    public void updateCitaController() {
+    public void editarCitaController() {
         citaService.updateCitaMenu();
     }
 }
