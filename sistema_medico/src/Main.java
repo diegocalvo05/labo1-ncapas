@@ -10,15 +10,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        // Servicies and Controllers
-        PatientService patientService = new PatientService();
-        DoctorService doctorService = new DoctorService();
-        CitaService citaService = new CitaService(doctorService, patientService);
-
-        PatientController patientController = new PatientController(patientService);
+        
+        PatientController patientController = new PatientController();
         DoctorController doctorController = new DoctorController();
-        CitaController citaController = new CitaController(citaService, doctorService, patientService);
+        CitaController citaController = new CitaController();
 
         int opcion;
 
