@@ -1,7 +1,6 @@
 package Service;
 
 import Model.Entity.Doctor;
-import Model.Entity.Patient;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -61,25 +60,35 @@ public class DoctorService {
         System.out.print("Fecha de reclutamiento (YYYY-MM-DD): ");
         LocalDate fechaReclutamiento = LocalDate.parse(scanner.nextLine());
 
-        System.out.println("Elija su especialidad (Digite el numero): ");
-        for(int i = 0; i < specialities.size(); i++) {
+        System.out.println("Elija su especialidad (Digite el número): ");
+        for (int i = 0; i < specialities.size(); i++) {
             System.out.println(i + ". " + specialities.get(i));
         }
-        String especialidad = specialities.get(Integer.parseInt(scanner.nextLine()));
 
+        int opcionEspecialidad = -1;
+        while (opcionEspecialidad < 0 || opcionEspecialidad >= specialities.size()) {
+            try {
+                System.out.print("Especialidad: ");
+                opcionEspecialidad = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Por favor, ingrese un número válido.");
+            }
+        }
+
+        String especialidad = specialities.get(opcionEspecialidad);
         Doctor newDoctor = addDoctor(nombre, apellido, birthDate, dui, fechaReclutamiento, especialidad);
-        doctors.add(newDoctor);
 
-        System.out.println("✅ Paciente registrado exitosamente:");
+        System.out.println("✅ Doctor registrado exitosamente:");
         System.out.println(newDoctor.toString());
     }
 
     public void getAllDoctors() {
-        if(doctors.isEmpty()) {
+        if (doctors.isEmpty()) {
             System.out.println("No se encontraron doctores");
+            return;
         }
 
-        doctors.forEach(d -> System.out.println(d.getNombre()));
+        doctors.forEach(System.out::println);
     }
 
     public void showSpecialities() {
@@ -87,14 +96,37 @@ public class DoctorService {
     }
 
     public Doctor seleccionarDoctorPorEspecialidad(String especialidad) {
-        System.out.println("Seleccione el numero de un doctor: ");
+        List<Doctor> selectedDoctors = doctors.stream()
+                .filter(doctor -> doctor.getEspecialidad().equalsIgnoreCase(especialidad))
+                .toList();
 
-        List<Doctor> selectedDoctors = doctors.stream().filter(doctor -> doctor.getEspecialidad().equals(especialidad)).toList();
-
-        for(int i = 0; i < selectedDoctors.size(); i++) {
-            System.out.println(i + ". " + selectedDoctors.get(i));
+        if (selectedDoctors.isEmpty()) {
+            System.out.println("❌ No se encontraron doctores con esa especialidad.");
+            return null;
         }
 
-        return selectedDoctors.get(Integer.parseInt(scanner.nextLine()));
+        System.out.println("👨‍⚕️ Doctores disponibles con especialidad '" + especialidad + "':");
+        for (int i = 0; i < selectedDoctors.size(); i++) {
+            System.out.println(i + ". " + selectedDoctors.get(i).getNombre());
+        }
+
+        int index = -1;
+        while (true) {
+            System.out.print("Ingrese una opción válida: ");
+            String input = scanner.nextLine();
+            try {
+                index = Integer.parseInt(input);
+                if (index >= 0 && index < selectedDoctors.size()) {
+                    break;
+                } else {
+                    System.out.println("⚠️ Opción fuera de rango.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Debe ingresar un número válido.");
+            }
+        }
+
+        return selectedDoctors.get(index);
     }
+
 }

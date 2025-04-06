@@ -5,8 +5,8 @@ import Service.PatientService;
 public class PatientController {
     private final PatientService patientService;
 
-    public PatientController() {
-        this.patientService = new PatientService();
+    public PatientController(PatientService patientService) {
+        this.patientService = patientService;
     }
 
     public void registrarPaciente() {
@@ -17,4 +17,5 @@ public class PatientController {
         patientService.listarPacientes();
     }
 }
+
 
