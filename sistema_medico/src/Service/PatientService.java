@@ -58,9 +58,10 @@ public class PatientService {
         LocalDate birthDate = LocalDate.parse(scanner.nextLine());
 
         Patient nuevo = registrarPacienteNuevo(nombre, apellido, dui, birthDate);
+        patients.add(nuevo);
 
         System.out.println("✅ Paciente registrado exitosamente:");
-        System.out.println(nuevo);
+        System.out.println(nuevo.toString());
     }
 
     private boolean esMayorDeEdad(LocalDate birthDate) {

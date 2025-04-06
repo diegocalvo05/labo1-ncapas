@@ -16,16 +16,16 @@ public class CitaService {
     private PatientService patientService;
     private Scanner scanner;
 
-    public CitaService(DoctorService doctorService, PatientService patientService) {
+    public CitaService() {
         this.citas = new ArrayList<>();
-        this.doctorService = doctorService;
-        this.patientService = patientService;
+        this.doctorService = new DoctorService();
+        this.patientService = new PatientService();
         this.scanner = new Scanner(System.in);
     }
 
     public void agendarCita() {
         System.out.println("📚 Especialidades disponibles:");
-        doctorService.mostrarEspecialidades();//Se cambiara dependiendo lo que hagas
+        doctorService.showSpecialities();//Se cambiara dependiendo lo que hagas
         System.out.print("Seleccione la especialidad: ");
         String especialidad = scanner.nextLine();
 

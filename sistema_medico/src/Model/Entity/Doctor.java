@@ -15,6 +15,12 @@ public class Doctor extends Person {
         this.especialidad = especialidad;
         this.codigo = generateCodigo();
     }
+
+    @Override
+    public String toString() {
+        return "Nombre: " + getNombre() + "\n Apellido: " + getApellido() + "\n Especialidad: " + especialidad;
+    }
+
     //Codigo Doc
     private String generateCodigo() {
         Random random = new Random();

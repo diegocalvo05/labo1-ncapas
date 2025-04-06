@@ -5,8 +5,8 @@ import Service.CitaService;
 public class CitaController {
     private CitaService citaService;
 
-    public CitaController(CitaService citaService) {
-        this.citaService = citaService;
+    public CitaController() {
+        this.citaService = new CitaService();
     }
 
     public void agendarCita() {

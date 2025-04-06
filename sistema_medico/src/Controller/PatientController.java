@@ -3,10 +3,10 @@ package Controller;
 import Service.PatientService;
 
 public class PatientController {
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    public PatientController(PatientService patientService) {
-        this.patientService = patientService;
+    public PatientController() {
+        this.patientService = new PatientService();
     }
 
     public void registrarPaciente() {
