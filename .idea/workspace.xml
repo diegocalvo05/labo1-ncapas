@@ -15,16 +15,16 @@
       <change beforePath="$PROJECT_DIR$/sistema_medico/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/sistema_medico.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/sistema_medico.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Controller/CitaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Controller/CitaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema_medico/src/Controller/DoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Controller/DoctorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Controller/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Controller/PatientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema_medico/src/Controller/ex_controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Controller/ex_controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Cita.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Cita.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Doctor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Patient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Model/Entity/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Service/CitaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Service/CitaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema_medico/src/Service/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Service/DoctorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema_medico/src/Service/PatientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Service/PatientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema_medico/src/Service/ex_service.java" beforeDir="false" afterPath="$PROJECT_DIR$/sistema_medico/src/Service/ex_service.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,22 +52,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;3-features-citas&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dmeji/Documents/GitHub/labo1-ncapas&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;copyright&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "4-feature-menu",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/dmeji/Documents/GitHub/labo1-ncapas",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "copyright",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="labo1-ncapas" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
