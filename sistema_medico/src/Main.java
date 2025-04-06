@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
+
         PatientController patientController = new PatientController();
         DoctorController doctorController = new DoctorController();
         CitaController citaController = new CitaController();
