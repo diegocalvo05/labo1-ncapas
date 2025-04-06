@@ -16,7 +16,7 @@ public class CitaService {
     private PatientService patientService;
     private Scanner scanner;
 
-    public CitaService() {
+    public CitaService(DoctorService doctorService, PatientService patientService) {
         this.citas = new ArrayList<>();
         this.doctorService = new DoctorService();
         this.patientService = new PatientService();

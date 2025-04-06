@@ -1,15 +1,66 @@
 import Controller.CitaController;
 import Controller.DoctorController;
+import Controller.PatientController;
+import Service.CitaService;
+import Service.DoctorService;
+import Service.PatientService;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        DoctorController controller = new DoctorController();
-        CitaController cController = new CitaController();
+        Scanner scanner = new Scanner(System.in);
 
-        //cController.agendarCita();
-        //controller.addDoctorController();
-        controller.getDoctorsController();
+        // Servicies and Controllers
+        PatientService patientService = new PatientService();
+        DoctorService doctorService = new DoctorService();
+        CitaService citaService = new CitaService(doctorService, patientService);
+
+        PatientController patientController = new PatientController(patientService);
+        DoctorController doctorController = new DoctorController();
+        CitaController citaController = new CitaController(citaService, doctorService, patientService);
+
+        int opcion;
+
+        do {
+            System.out.println("\n MENÚ PRINCIPAL - SISTEMA DE CITAS MÉDICAS ");
+            System.out.println("1. Registrar nuevo paciente");
+            System.out.println("2. Listar pacientes");
+            System.out.println("3. Registrar nuevo doctor");
+            System.out.println("4. Listar doctores");
+            System.out.println("5. Agendar nueva cita");
+            System.out.println("6. Listar citas");
+            System.out.println("0. Salir");
+            System.out.print("Seleccione una opción: ");
+
+            opcion = Integer.parseInt(scanner.nextLine());
+
+            switch (opcion) {
+                case 1:
+                    patientController.registrarPaciente();
+                    break;
+                case 2:
+                    patientController.listarPacientes();
+                    break;
+                case 3:
+                    doctorController.addDoctorController();
+                    break;
+                case 4:
+                    doctorController.getDoctorsController();
+                    break;
+                case 5:
+                    citaController.agendarCitaController();
+                    break;
+                case 6:
+                    citaController.listarCitasController();
+                    break;
+                case 0:
+                    System.out.println("Cerrando el sistema. ¡Hasta pronto!");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intente nuevamente.");
+                    break;
+            }
+        } while (opcion != 0);
     }
 }
