@@ -11,9 +11,14 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        PatientController patientController = new PatientController();
+        // Servicies and Controllers
+        PatientService patientService = new PatientService();
+        DoctorService doctorService = new DoctorService();
+        CitaService citaService = new CitaService(doctorService, patientService);
+
+        PatientController patientController = new PatientController(patientService);
         DoctorController doctorController = new DoctorController();
-        CitaController citaController = new CitaController();
+        CitaController citaController = new CitaController(citaService, doctorService, patientService);
 
         int opcion;
 

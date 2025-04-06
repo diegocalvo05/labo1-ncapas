@@ -8,7 +8,6 @@ public class Doctor extends Person {
     private String especialidad;
     private String codigo;
 
-    // Constructor
     public Doctor(String nombre, String apellido, LocalDate birthDate, String dui, LocalDate fechaReclutamiento, String especialidad) {
         super(nombre, apellido, birthDate, dui);
         this.fechaReclutamiento = fechaReclutamiento;
@@ -18,10 +17,12 @@ public class Doctor extends Person {
 
     @Override
     public String toString() {
-        return "Nombre: " + getNombre() + "\n Apellido: " + getApellido() + "\n Especialidad: " + especialidad;
+        return "Nombre: " + getNombre() +
+                "\nApellido: " + getApellido() +
+                "\nEspecialidad: " + especialidad +
+                "\nCódigo: " + codigo;
     }
 
-    //Codigo Doc
     private String generateCodigo() {
         Random random = new Random();
         char letra1 = (char) (random.nextInt(26) + 'A');

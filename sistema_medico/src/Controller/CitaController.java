@@ -14,10 +14,10 @@ public class CitaController {
     private PatientService patientService;
     private Scanner scanner;
 
-    public CitaController() {
-        this.doctorService = new DoctorService();
-        this.patientService = new PatientService();
-        this.citaService = new CitaService(doctorService, patientService);
+    public CitaController(CitaService citaService, DoctorService doctorService, PatientService patientService) {
+        this.citaService = citaService;
+        this.doctorService = doctorService;
+        this.patientService = patientService;
         this.scanner = new Scanner(System.in);
     }
 

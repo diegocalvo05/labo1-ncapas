@@ -12,24 +12,24 @@ import java.util.Scanner;
 
 public class CitaService {
     private List<Cita> citas;
-    private DoctorService doctorService;//Se cambiara por el nombre que le pongas al servicio
+    private DoctorService doctorService;
     private PatientService patientService;
     private Scanner scanner;
 
     public CitaService(DoctorService doctorService, PatientService patientService) {
         this.citas = new ArrayList<>();
-        this.doctorService = new DoctorService();
-        this.patientService = new PatientService();
+        this.doctorService = doctorService;
+        this.patientService = patientService;
         this.scanner = new Scanner(System.in);
     }
 
     public Cita makeCita() {
         System.out.println("📚 Especialidades disponibles:");
-        doctorService.showSpecialities();//Se cambiara dependiendo lo que hagas
+        doctorService.showSpecialities();
         System.out.print("Seleccione la especialidad: ");
         String especialidad = scanner.nextLine();
 
-        Doctor doctor = doctorService.seleccionarDoctorPorEspecialidad(especialidad);// Se cambiara dependiendo lo que hagas
+        Doctor doctor = doctorService.seleccionarDoctorPorEspecialidad(especialidad);
         if (doctor == null) {
             System.out.println("No hay doctores disponibles en esta especialidad.");
             return null;
@@ -39,46 +39,47 @@ public class CitaService {
         String pacienteDui = scanner.nextLine();
         Patient patient = patientService.buscarPorDui(pacienteDui);
 
+        if (patient == null) {
+            System.out.println("❌ Paciente no encontrado. Asegúrese de registrar al paciente primero.");
+            return null;
+        }
+
         System.out.print("Ingrese la fecha de la cita (YYYY-MM-DD): ");
         LocalDate fecha = LocalDate.parse(scanner.nextLine());
 
         System.out.print("Ingrese la hora de la cita (HH:MM) entre 08:00 y 16:00: ");
         LocalTime hora = LocalTime.parse(scanner.nextLine());
 
-        // Validación de hora permitida
         if (!esHorarioValido(hora)) {
             System.out.println("La hora ingresada está fuera del horario permitido (08:00 AM - 04:00 PM).");
             return null;
         }
 
-        // Validar que la cita no sea en el pasado y sea en el futuro
         if (fecha.isBefore(LocalDate.now()) || (fecha.equals(LocalDate.now()) && hora.isBefore(LocalTime.now()))) {
             System.out.println("No se pueden agendar citas en el pasado.");
             return null;
         }
 
-        // Validar disponibilidad del doctor
         if (!esDoctorDisponible(doctor, fecha, hora)) {
             System.out.println("El doctor ya tiene una cita en ese horario.");
             return null;
         }
 
-        // Validar disponibilidad del paciente
         if (!esPacienteDisponible(patient, fecha, hora)) {
             System.out.println("El paciente ya tiene una cita en ese horario.");
             return null;
         }
-
-        // Crear y agregar la cita
 
         return new Cita(doctor, patient, especialidad, fecha, hora);
     }
 
     public void agendarCita() {
         Cita newCita = makeCita();
-        citas.add(newCita);
-        System.out.println("✅ Cita agendada con éxito:");
-        System.out.println(newCita);
+        if (newCita != null) {
+            citas.add(newCita);
+            System.out.println("✅ Cita agendada con éxito:");
+            System.out.println(newCita);
+        }
     }
 
     private boolean esHorarioValido(LocalTime hora) {
@@ -99,7 +100,6 @@ public class CitaService {
                         && seSuperpone(c.getHora(), hora));
     }
 
-    // revisa si dos horas se superponen considerando duración de 1h
     private boolean seSuperpone(LocalTime existente, LocalTime nueva) {
         return !nueva.isBefore(existente) && nueva.isBefore(existente.plusHours(1));
     }
@@ -152,9 +152,18 @@ public class CitaService {
             System.out.println(i + ". " + citas.get(i).toString());
         }
 
-        Cita selectedCita = citas.get(Integer.parseInt(scanner.nextLine()));
+        int seleccion = Integer.parseInt(scanner.nextLine());
+        if (seleccion < 0 || seleccion >= citas.size()) {
+            System.out.println("❌ Selección inválida.");
+            return;
+        }
+
+        Cita selectedCita = citas.get(seleccion);
         Cita updatedCita = makeCita();
 
-        updateCita(selectedCita, updatedCita);
+        if (updatedCita != null) {
+            updateCita(selectedCita, updatedCita);
+            System.out.println("✅ Cita actualizada con éxito.");
+        }
     }
 }
