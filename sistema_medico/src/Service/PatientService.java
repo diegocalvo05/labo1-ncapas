@@ -13,7 +13,7 @@ public class PatientService {
     private static PatientService instance;
     private List<Patient> patients;
     private Scanner scanner;
-    private static final Pattern DUI_PATTERN = Pattern.compile("^\\d{8}-\\d$");
+    private static final Pattern DUI_PATTERN = Pattern.compile("^\\d{8}-\\d$");// Regex para validarrr el formato del dui
 
     private PatientService() {
         this.patients = new ArrayList<>();
@@ -27,7 +27,7 @@ public class PatientService {
 
         return instance;
     }
-
+// validando el formato del dui
     public static String validarDUI(String dui) {
         if (dui == null || !DUI_PATTERN.matcher(dui).matches()) {
             throw new IllegalArgumentException("Formato de DUI inválido. Use ########-# (8 dígitos, guión, 1 dígito)");

@@ -249,6 +249,5 @@ public class CitaService {
         }
     }
 
-    public void cancelarCitaPorPacienteYFecha(String nombrePaciente, LocalDate fecha) {
-    }
+
 }
