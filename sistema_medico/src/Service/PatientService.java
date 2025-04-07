@@ -8,12 +8,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PatientService {
+    private static PatientService instance;
     private List<Patient> patients;
     private Scanner scanner;
 
-    public PatientService() {
+    private PatientService() {
         this.patients = new ArrayList<>();
         this.scanner = new Scanner(System.in);
+    }
+
+    public static PatientService getInstance() {
+        if (instance == null) {
+            instance = new PatientService();
+        }
+
+        return instance;
     }
 
     public Patient buscarPorDui(String dui) {
@@ -31,7 +40,6 @@ public class PatientService {
             dui = "00000000-0";
         }
         Patient newPatient = new Patient(nombre, apellido, birthDate, dui);
-        patients.add(newPatient);
         return newPatient;
     }
 
@@ -73,6 +81,6 @@ public class PatientService {
             System.out.println("⚠️ No hay pacientes registrados.");
             return;
         }
-        patients.forEach(System.out::println);
+        patients.forEach(p -> System.out.println(p.toString() + "\n"));
     }
 }

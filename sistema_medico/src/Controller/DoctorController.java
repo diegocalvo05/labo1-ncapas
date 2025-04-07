@@ -6,7 +6,7 @@ public class DoctorController {
     private final DoctorService doctorService;
 
     public DoctorController() {
-        this.doctorService = new DoctorService();
+        this.doctorService = DoctorService.getInstance();
     }
 
     public void addDoctorController() {

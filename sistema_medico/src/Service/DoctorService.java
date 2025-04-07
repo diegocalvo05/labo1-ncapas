@@ -9,14 +9,22 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DoctorService {
+    private static DoctorService instance;
     private List<Doctor> doctors;
     private List<String> specialities;
     private Scanner scanner;
 
-    public DoctorService() {
+    private DoctorService() {
         this.doctors = new ArrayList<>();
         this.specialities = new ArrayList<>(Arrays.asList("Dermatologo", "Cardiologo", "Neumologo", "Internista", "Neurologo"));
         this.scanner = new Scanner(System.in);
+    }
+
+    public static DoctorService getInstance() {
+        if(instance == null) {
+            instance = new DoctorService();
+        }
+        return instance;
     }
 
     public Doctor searchByDui(String dui) {
@@ -91,13 +99,13 @@ public class DoctorService {
         doctors.forEach(System.out::println);
     }
 
-    public void showSpecialities() {
-        specialities.forEach(System.out::println);
+    public List<String> getSpecialities() {
+        return specialities;
     }
 
     public Doctor seleccionarDoctorPorEspecialidad(String especialidad) {
         List<Doctor> selectedDoctors = doctors.stream()
-                .filter(doctor -> doctor.getEspecialidad().equalsIgnoreCase(especialidad))
+                .filter(doctor -> doctor.getEspecialidad().equals(especialidad))
                 .toList();
 
         if (selectedDoctors.isEmpty()) {

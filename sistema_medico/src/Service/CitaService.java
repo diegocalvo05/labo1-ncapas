@@ -24,10 +24,16 @@ public class CitaService {
     }
 
     public Cita makeCita() {
+        List<String> specialities = doctorService.getSpecialities();
+
         System.out.println("📚 Especialidades disponibles:");
-        doctorService.showSpecialities();
-        System.out.print("Seleccione la especialidad: ");
-        String especialidad = scanner.nextLine();
+        System.out.println("Seleccione el numero de la especialidad: ");
+
+        for(int i = 0; i < specialities.size(); i++) {
+            System.out.println(i + ". " + specialities.get(i));
+        }
+
+        String especialidad = specialities.get(Integer.parseInt(scanner.nextLine()));
 
         Doctor doctor = doctorService.seleccionarDoctorPorEspecialidad(especialidad);
         if (doctor == null) {
