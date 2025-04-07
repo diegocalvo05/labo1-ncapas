@@ -249,5 +249,25 @@ public class CitaService {
         }
     }
 
+    public boolean deleteCita(Cita cita) {
+        if(cita == null) return false;
+
+        citas = citas.stream().filter(c -> !c.equals(cita)).toList();
+        return true;
+    }
+
+    public void deleteCitaMenu() {
+        System.out.println("Digite el numero de la cita a cancelar: ");
+
+        for(int i = 0; i < citas.size(); i++) {
+            System.out.println(i + ":\n" + citas.get(i).toString());
+        }
+
+        if(deleteCita(citas.get(Integer.parseInt(scanner.nextLine())))) {
+            System.out.println("Se cancelo la cita correctamente.");
+        } else {
+            System.out.println("No se pudo cancelar la cita.");
+        }
+    }
 
 }

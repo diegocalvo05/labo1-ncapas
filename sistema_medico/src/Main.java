@@ -1,9 +1,6 @@
 import Controller.CitaController;
 import Controller.DoctorController;
 import Controller.PatientController;
-import Service.CitaService;
-import Service.DoctorService;
-import Service.PatientService;
 
 import java.util.Scanner;
 
@@ -37,7 +34,8 @@ public class Main {
             System.out.println(" 7. Filtrar citas por doctor");
             System.out.println(" 8. Filtrar citas por fecha");
             System.out.println(" 9. Editar una cita");
-            System.out.println("10. Boton que No sirve de nada, pero se ve bonito.");
+            System.out.println(" 10. Cancelar una cita");
+            System.out.println("11. Boton que No sirve de nada, pero se ve bonito.");
             System.out.println(" 0. Salir");
             System.out.print("Seleccione una opción: ");
 
@@ -78,6 +76,9 @@ public class Main {
                     citaController.editarCitaController();
                     break;
                 case 10:
+                    citaController.deleteCitaController();
+                    break;
+                case 11:
                     mostrarbotonbonito();
                     break;
                 case 0:

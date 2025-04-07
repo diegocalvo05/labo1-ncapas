@@ -58,4 +58,8 @@ public class CitaController {
     public void editarCitaController() {
         citaService.updateCitaMenu();
     }
+
+    public void deleteCitaController() {
+        citaService.deleteCitaMenu();
+    }
 }
